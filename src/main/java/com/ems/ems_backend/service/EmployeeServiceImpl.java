@@ -3,7 +3,6 @@ package com.ems.ems_backend.service;
 import com.ems.ems_backend.entity.Employee;
 import com.ems.ems_backend.exception.ResourceNotFoundException;
 import com.ems.ems_backend.repository.EmployeeRepository;
-import com.ems.ems_backend.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,10 +26,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return repository.save(employee);
     }
 
-//    @Override
-//    public void deleteEmployee(Long id) {
-//        repository.deleteById(id);
-//    }
 @Override
 public void deleteEmployee(Long id) {
     if (!repository.existsById(id)) {
@@ -39,30 +34,11 @@ public void deleteEmployee(Long id) {
     repository.deleteById(id);
 }
 
-//    @Override
-//    public Employee getEmployeeById(Long id) {
-//        return repository.findById(id).orElse(null);
-//    }
 @Override
 public Employee getEmployeeById(Long id) {
     return repository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
 }
-
-//      @Override
-//    public Employee updateEmployee(Long id, Employee employee) {
-//
-//        Employee existing = repository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Employee not found"));
-//
-//        existing.setName(employee.getName());
-//        existing.setEmail(employee.getEmail());
-//        existing.setDepartment(employee.getDepartment());
-//        existing.setSalary(employee.getSalary());
-//
-//        return repository.save(existing);
-//    }
-
 
     @Override
     public Employee updateEmployee(Long id, Employee employee) {
@@ -76,5 +52,4 @@ public Employee getEmployeeById(Long id) {
 
         return repository.save(existing);
     }
-
 }
